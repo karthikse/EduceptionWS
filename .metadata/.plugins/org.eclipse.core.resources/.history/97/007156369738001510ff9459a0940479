@@ -1,0 +1,38 @@
+package edu.tier3.dataAccessLayer;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import edu.tier3.dataEntities.Student;
+import edu.tier3.dataEntities.StudentEducationDetail;
+import edu.tier3.dataEntities.User;
+
+public class ProfileDAL {
+	public HashMap loadStudentProfileDetails(HashMap userMap){
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+	    EntityManager entitymanager = emfactory.createEntityManager();
+	    int userId = Integer.parseInt(userMap.get("userId").toString());
+	    
+	    TypedQuery<Student> querySt =
+	    	    entitymanager.createNamedQuery("Student.findByUserId", Student.class);
+	    	    List<Student> studentResults = querySt.setParameter("userId", userId)
+	    	    							.getResultList();
+	    	    
+	    	    Student studentProfile = studentResults.get(0);
+	    	    
+	    TypedQuery<StudentEducationDetail> querySED =
+	    entitymanager.createNamedQuery("StudentEducationDetail.findByStudentId", StudentEducationDetail.class);
+	    List<StudentEducationDetail> eduacationResults = querySED.setParameter("studentId", userId)
+	    							.getResultList();
+	    
+	    HashMap retMap  = new HashMap();
+	    retMap.put("eduacationResults", eduacationResults);
+	    retMap.put("role", user.getRoleId()); // change this to role from roleId 
+	    return retMap;
+	}
+}

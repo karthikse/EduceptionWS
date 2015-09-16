@@ -1,0 +1,283 @@
+package edu.tier3.dataEntities;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import java.util.Date;
+
+
+/**
+ * The persistent class for the student_education_details database table.
+ * 
+ */
+@Entity
+@Table(name="student_education_details")
+@NamedQuery(name="StudentEducationDetail.findAll", query="SELECT s FROM StudentEducationDetail s")
+@NamedQueries({
+	@NamedQuery(name="StudentEducationDetail.findByStudentId", query="SELECT s FROM StudentEducationDetail s where s.student = :userId")
+})
+public class StudentEducationDetail implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private StudentEducationDetailPK id;
+
+	@Column(name="actv_in")
+	private String actvIn;
+
+	private float cgpa;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="created_tz")
+	private Date createdTz;
+
+	@Column(name="created_uid")
+	private int createdUid;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="defend_expiry_date")
+	private Date defendExpiryDate;
+
+	@Column(name="defend_flag")
+	private String defendFlag;
+
+	@Column(name="defend_value")
+	private String defendValue;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="end_date")
+	private Date endDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_modified_tz")
+	private Date lastModifiedTz;
+
+	@Column(name="last_modified_uid")
+	private int lastModifiedUid;
+
+	@Column(name="other_major")
+	private String otherMajor;
+
+	@Column(name="other_school")
+	private String otherSchool;
+
+	@Column(name="other_univ")
+	private String otherUniv;
+
+	@Lob
+	@Column(name="project_desc")
+	private byte[] projectDesc;
+
+	@Column(name="project_header")
+	private String projectHeader;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="start_date")
+	private Date startDate;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="defend_id")
+	private User user;
+
+	//bi-directional many-to-one association to Major
+	@ManyToOne
+	@JoinColumn(name="major_id")
+	private Major major;
+
+	//bi-directional many-to-one association to School
+	@ManyToOne
+	@JoinColumn(name="school_id")
+	private School school;
+
+	//bi-directional many-to-one association to Student
+	@ManyToOne
+	@JoinColumn(name="student_id")
+	private Student student;
+
+	//bi-directional many-to-one association to University
+	@ManyToOne
+	@JoinColumn(name="univ_id")
+	private University university;
+
+	public StudentEducationDetail() {
+	}
+
+	public StudentEducationDetailPK getId() {
+		return this.id;
+	}
+
+	public void setId(StudentEducationDetailPK id) {
+		this.id = id;
+	}
+
+	public String getActvIn() {
+		return this.actvIn;
+	}
+
+	public void setActvIn(String actvIn) {
+		this.actvIn = actvIn;
+	}
+
+	public float getCgpa() {
+		return this.cgpa;
+	}
+
+	public void setCgpa(float cgpa) {
+		this.cgpa = cgpa;
+	}
+
+	public Date getCreatedTz() {
+		return this.createdTz;
+	}
+
+	public void setCreatedTz(Date createdTz) {
+		this.createdTz = createdTz;
+	}
+
+	public int getCreatedUid() {
+		return this.createdUid;
+	}
+
+	public void setCreatedUid(int createdUid) {
+		this.createdUid = createdUid;
+	}
+
+	public Date getDefendExpiryDate() {
+		return this.defendExpiryDate;
+	}
+
+	public void setDefendExpiryDate(Date defendExpiryDate) {
+		this.defendExpiryDate = defendExpiryDate;
+	}
+
+	public String getDefendFlag() {
+		return this.defendFlag;
+	}
+
+	public void setDefendFlag(String defendFlag) {
+		this.defendFlag = defendFlag;
+	}
+
+	public String getDefendValue() {
+		return this.defendValue;
+	}
+
+	public void setDefendValue(String defendValue) {
+		this.defendValue = defendValue;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getLastModifiedTz() {
+		return this.lastModifiedTz;
+	}
+
+	public void setLastModifiedTz(Date lastModifiedTz) {
+		this.lastModifiedTz = lastModifiedTz;
+	}
+
+	public int getLastModifiedUid() {
+		return this.lastModifiedUid;
+	}
+
+	public void setLastModifiedUid(int lastModifiedUid) {
+		this.lastModifiedUid = lastModifiedUid;
+	}
+
+	public String getOtherMajor() {
+		return this.otherMajor;
+	}
+
+	public void setOtherMajor(String otherMajor) {
+		this.otherMajor = otherMajor;
+	}
+
+	public String getOtherSchool() {
+		return this.otherSchool;
+	}
+
+	public void setOtherSchool(String otherSchool) {
+		this.otherSchool = otherSchool;
+	}
+
+	public String getOtherUniv() {
+		return this.otherUniv;
+	}
+
+	public void setOtherUniv(String otherUniv) {
+		this.otherUniv = otherUniv;
+	}
+
+	public byte[] getProjectDesc() {
+		return this.projectDesc;
+	}
+
+	public void setProjectDesc(byte[] projectDesc) {
+		this.projectDesc = projectDesc;
+	}
+
+	public String getProjectHeader() {
+		return this.projectHeader;
+	}
+
+	public void setProjectHeader(String projectHeader) {
+		this.projectHeader = projectHeader;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Major getMajor() {
+		return this.major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+
+	public School getSchool() {
+		return this.school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
+	public Student getStudent() {
+		return this.student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public University getUniversity() {
+		return this.university;
+	}
+
+	public void setUniversity(University university) {
+		this.university = university;
+	}
+
+}

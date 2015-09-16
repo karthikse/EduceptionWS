@@ -1,0 +1,30 @@
+package edu.tier2.businessLayer;
+
+import java.util.HashMap;
+
+import edu.tier1.managedBean.UserBean;
+import edu.tier3.dataAccessLayer.ProfileDAL;
+
+public class ProfileBL {
+	public HashMap loadStudentProfileDetails(HashMap credentialsMap){
+		ProfileDAL profileDAL = new ProfileDAL();
+		String loginStatus = null;
+		UserBean ub = (UserBean)credentialsMap.get("userBean");
+		HashMap userMap = new HashMap();
+		userMap.put("userName", ub.getName());
+		HashMap returnMap = profileDAL.loadStudentProfileDetails(userMap);
+		String pass = returnMap.get("password").toString();
+		UserBean user = (UserBean)credentialsMap.get("userBean");
+		if(user.getPassword().equals(pass)){
+			user.setRole(returnMap.get("role").toString());
+			user.setLoginStatus("success");
+		}
+		else{
+			user.setLoginStatus("failure");
+			user.setPassword("");
+		}
+		HashMap retMap= new HashMap();
+		retMap.put("retUserBean", user);
+		return retMap;
+	}
+}

@@ -1,0 +1,96 @@
+package edu.tier1.controller;
+
+import java.util.HashMap;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import edu.tier1.managedBean.HRBean;
+import edu.tier1.managedBean.StudentProfileDetailsBean;
+import edu.tier1.managedBean.UserBean;
+import edu.tier2.securityLayer.LoginSL;
+import edu.tier2.securityLayer.ProfileSL;
+
+public class Controller {
+	private UserBean userBean;
+	private StudentProfileDetailsBean studentProfileDetailsBean;
+	private HRBean hrBean;
+	
+	public String login(){
+		
+		LoginSL loginSL = new LoginSL();
+		HashMap credMap = new HashMap();
+		credMap.put("userBean", userBean);
+		HashMap retMap = loginSL.login(credMap);
+		UserBean ub = (UserBean)retMap.get("retUserBean");
+		
+		if("success".equals(ub.getLoginStatus()))
+			loadSPD();
+		
+		return ub.getLoginStatus();	
+	}
+	
+	public String loadSPD(){
+		
+		ProfileSL profileSL = new ProfileSL();
+		HashMap credMap = new HashMap();
+		credMap.put("userBean", this.getUserBean());
+		
+		UserBean spdUB = new UserBean();
+		this.getStudentProfileDetailsBean().setUserBean(spdUB);
+		credMap.put("studentProfileDetailsBean", this.getStudentProfileDetailsBean());
+		HashMap retMap = profileSL.loadStudentProfileDetails(credMap);
+		this.getStudentProfileDetailsBean().buildHtmlcode();
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+		session.setAttribute("htmlFlush", this.getStudentProfileDetailsBean().getHtmlFlush());
+		
+		return null;	
+	}
+	
+	public String loadHR(){
+		
+		ProfileSL profileSL = new ProfileSL();
+		HashMap credMap = new HashMap();
+		credMap.put("userBean", this.getUserBean());		
+		credMap.put("hrBean", this.getHrBean());
+		HashMap retMap = profileSL.loadHRDetails(credMap);
+		this.getHrBean().buildHtmlcode();
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+		session.setAttribute("HRhtmlFlush", this.getStudentProfileDetailsBean().getHtmlFlush());
+		
+		return null;	
+	}
+	
+	public String postJob(){
+		return null;	
+	}
+
+	public StudentProfileDetailsBean getStudentProfileDetailsBean() {
+		return studentProfileDetailsBean;
+	}
+
+	public void setStudentProfileDetailsBean(
+			StudentProfileDetailsBean studentProfileDetailsBean) {
+		this.studentProfileDetailsBean = studentProfileDetailsBean;
+	}
+
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
+	
+	public HRBean getHrBean() {
+		return hrBean;
+	}
+
+	public void setHrBean(HRBean hrBean) {
+		this.hrBean = hrBean;
+	}
+}

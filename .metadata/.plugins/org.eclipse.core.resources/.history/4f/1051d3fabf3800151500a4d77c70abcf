@@ -1,0 +1,46 @@
+package edu.tier2.businessLayer;
+
+import java.util.HashMap;
+
+import edu.tier1.managedBean.EducationBean;
+import edu.tier1.managedBean.StudentProfileDetailsBean;
+import edu.tier1.managedBean.UserBean;
+import edu.tier3.dataAccessLayer.ProfileDAL;
+import edu.tier3.dataEntities.Student;
+import edu.tier3.dataEntities.StudentEducationDetail;
+
+public class ProfileBL {
+	public HashMap loadStudentProfileDetails(HashMap credentialsMap){
+		ProfileDAL profileDAL = new ProfileDAL();
+		UserBean ub = (UserBean)credentialsMap.get("userBean");
+		
+		HashMap userMap = new HashMap();
+		userMap.put("userId", ub.getUid());
+		HashMap returnMap = profileDAL.loadStudentProfileDetails(userMap);
+		
+		Student studentProfile = (Student) returnMap.get("studentProfile");
+		StudentProfileDetailsBean studentProfileBean = (StudentProfileDetailsBean) returnMap.get("studentProfileDetailsBean");
+		
+		//Start student details load
+		studentProfileBean.getUserBean().setName(name);
+		studentProfileBean.getUserBean().setRole(role);
+		studentProfileBean.getUserBean().setEmail(email);
+		
+		EducationBean eb = null;
+		StudentEducationDetail eE = null;
+		for(int i=0; i<studentProfile.getStudentEducationDetails().size();i++){
+			eb = studentProfileBean.getEducationBeans().get(i);
+			eE = studentProfile.getStudentEducationDetails().get(i);
+			eb.setMajor(eE.getMajor().getMajorName());
+			eb.setSchool(eE.getSchool().getSchoolName());
+			eb.setStartDate(eE.getStartDate().toString());
+			eb.setEndDate(eE.getEndDate().toString());
+			eb.setCgpa(String.valueOf(eE.getCgpa()));
+			eb.setUniversity(eE.getUniversity().getUnivName());
+			eb.setDefendValue(eE.getDefendValue());
+		}
+		//End student details load
+		HashMap retMap= new HashMap();
+		return retMap;
+	}
+}

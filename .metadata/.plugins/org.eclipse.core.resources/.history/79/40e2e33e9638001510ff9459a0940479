@@ -1,0 +1,29 @@
+package edu.tier3.dataAccessLayer;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import edu.tier3.dataEntities.StudentEducationDetail;
+import edu.tier3.dataEntities.User;
+
+public class ProfileDAL {
+	public HashMap loadStudentProfileDetails(HashMap userMap){
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+	    EntityManager entitymanager = emfactory.createEntityManager();
+	    
+	    TypedQuery<StudentEducationDetail> query =
+	    entitymanager.createNamedQuery("StudentEducationDetail.findByUsername", StudentEducationDetail.class);
+	    List<StudentEducationDetail> eduacationResults = query.setParameter("username", userMap.get("userName").toString())
+	    							.getResultList();
+	    
+	    HashMap retMap  = new HashMap();
+	    retMap.put("eduacationResults", eduacationResults);
+	    retMap.put("role", user.getRoleId()); // change this to role from roleId 
+	    return retMap;
+	}
+}

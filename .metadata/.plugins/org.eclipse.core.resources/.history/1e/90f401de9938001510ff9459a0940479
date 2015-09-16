@@ -1,0 +1,28 @@
+package edu.tier2.businessLayer;
+
+import java.util.HashMap;
+
+import edu.tier1.managedBean.StudentProfileDetails;
+import edu.tier1.managedBean.UserBean;
+import edu.tier3.dataAccessLayer.ProfileDAL;
+import edu.tier3.dataEntities.Student;
+
+public class ProfileBL {
+	public HashMap loadStudentProfileDetails(HashMap credentialsMap){
+		ProfileDAL profileDAL = new ProfileDAL();
+		UserBean ub = (UserBean)credentialsMap.get("userBean");
+		HashMap userMap = new HashMap();
+		userMap.put("userId", ub.getUid());
+		HashMap returnMap = profileDAL.loadStudentProfileDetails(userMap);
+		
+		Student studentProfile = (Student) returnMap.get("studentProfile");
+		StudentProfileDetails studentProfileBean = (StudentProfileDetails) returnMap.get("studentProfileDetails");
+		
+		for(int i=0; i<studentProfile.getStudentEducationDetails().size();i++){
+			studentProfileBean.
+		}
+		
+		HashMap retMap= new HashMap();
+		return retMap;
+	}
+}

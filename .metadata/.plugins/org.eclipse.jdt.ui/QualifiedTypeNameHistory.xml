@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="edu.tier2.securityLayer.ProfileSL"/>
+<fullyQualifiedTypeName name="edu.tier2.businessLayer.ProfileBL"/>
+<fullyQualifiedTypeName name="edu.tier3.dataAccessLayer.ProfileDAL"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.Student"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.StudentProfileDetails"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.StudentProfileDetailsBean"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.StudentEducationDetail"/>
+<fullyQualifiedTypeName name="javax.faces.context.FacesContext"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.EducationBean"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.UserBean"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.WorkExperienceBean"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.StudentEmployementHistory"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.StudentAchievement"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.AchievementsBean"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.LeadershipBean"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.StudentLeadership"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.WorkAuthorizationBean"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.StudentWorkAuthorization"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.SkillsBean"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.StudentSkill"/>
+<fullyQualifiedTypeName name="edu.tier3.dataEntities.Hr"/>
+<fullyQualifiedTypeName name="edu.tier1.managedBean.HRBean"/>
+</qualifiedTypeNameHistroy>

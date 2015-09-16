@@ -1,0 +1,17 @@
+package edu.tier2.securityLayer;
+
+import java.util.HashMap;
+
+import edu.tier2.businessLayer.ProfileBL;
+
+public class ProfileSL {
+	public HashMap loadStudentProfileDetails(HashMap credentials){
+		ProfileBL profileBL = new ProfileBL();
+		return profileBL.loadStudentProfileDetails(credentials);
+	}
+
+	public HashMap loadHRDetails(HashMap credentials) {
+		ProfileBL profileBL = new ProfileBL();
+		return profileBL.loadHRDetails(credentials);
+	}
+}

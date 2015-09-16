@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<!--<persistence-unit name="projectXY">
+		<class>com.projectXY.eclipseLink.Entities.User</class>
+	</persistence-unit>-->
+	<persistence-unit name="Eclipselink_JPA" transaction-type="RESOURCE_LOCAL">
+		<class>edu.tier3.dataEntities.Company</class>
+		<class>edu.tier3.dataEntities.Department</class>
+		<class>edu.tier3.dataEntities.Hr</class>
+		<class>edu.tier3.dataEntities.HrJob</class>
+		<class>edu.tier3.dataEntities.HrJobPK</class>
+		<class>edu.tier3.dataEntities.JobStatus</class>
+		<class>edu.tier3.dataEntities.Job</class>
+		<class>edu.tier3.dataEntities.Major</class>
+		<class>edu.tier3.dataEntities.Professor</class>
+		<class>edu.tier3.dataEntities.Role</class>
+		<class>edu.tier3.dataEntities.School</class>
+		<class>edu.tier3.dataEntities.Student</class>
+		<class>edu.tier3.dataEntities.StudentAchievement</class>
+		<class>edu.tier3.dataEntities.StudentAchievementPK</class>
+		<class>edu.tier3.dataEntities.StudentCours</class>
+		<class>edu.tier3.dataEntities.StudentCoursPK</class>
+		<class>edu.tier3.dataEntities.StudentEducationDetail</class>
+		<class>edu.tier3.dataEntities.StudentEducationDetailPK</class>
+		<class>edu.tier3.dataEntities.StudentEmployementHistory</class>
+		<class>edu.tier3.dataEntities.StudentEmployementHistoryPK</class>
+		<class>edu.tier3.dataEntities.StudentJob</class>
+		<class>edu.tier3.dataEntities.StudentJobPK</class>
+		<class>edu.tier3.dataEntities.StudentLeadership</class>
+		<class>edu.tier3.dataEntities.StudentLeadershipPK</class>
+		<class>edu.tier3.dataEntities.StudentSkill</class>
+		<class>edu.tier3.dataEntities.StudentSkillPK</class>
+		<class>edu.tier3.dataEntities.StudentWorkAuthorization</class>
+		<class>edu.tier3.dataEntities.StudentWorkAuthorizationPK</class>
+		<class>edu.tier3.dataEntities.University</class>
+		<class>edu.tier3.dataEntities.UniversityJob</class>
+		<class>edu.tier3.dataEntities.UniversityJobPK</class>
+		<class>edu.tier3.dataEntities.User</class>
+		<class>edu.tier3.dataEntities.UserDetail</class>
+		<class>edu.tier3.dataEntities.WorkAuthorizationType</class>
+   
+      
+
+      <properties>
+         <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/educeptionDB"/>
+         <property name="javax.persistence.jdbc.user" value="root"/>
+         <property name="javax.persistence.jdbc.password" value="root"/>
+         <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+         <property name="eclipselink.logging.level" value="FINE"/>
+         <property name="eclipselink.ddl-generation" value="create-tables"/>
+      </properties>
+      
+   </persistence-unit>
+</persistence>

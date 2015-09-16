@@ -1,0 +1,245 @@
+package edu.tier3.dataEntities;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import java.util.Date;
+import java.util.List;
+
+
+/**
+ * The persistent class for the hr database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Hr.findAll", query="SELECT h FROM Hr h")
+@NamedQueries({
+	@NamedQuery(name="Hr.findByUserId", query="SELECT h FROM Hr h where h.uid = :userId")
+})
+public class Hr implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="hr_id")
+	private int hrId;
+
+	@Column(name="actv_in")
+	private String actvIn;
+
+	@Column(name="company_id")
+	private int companyId;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="created_tz")
+	private Date createdTz;
+
+	@Column(name="created_uid")
+	private int createdUid;
+
+	@Column(name="display_picture")
+	private String displayPicture;
+
+	@Column(name="first_name")
+	private String firstName;
+
+	private String gender;
+
+	@Lob
+	@Column(name="hr_description")
+	private byte[] hrDescription;
+
+	@Column(name="hr_role")
+	private String hrRole;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_modified_tz")
+	private Date lastModifiedTz;
+
+	@Column(name="last_modified_uid")
+	private int lastModifiedUid;
+
+	@Column(name="last_name")
+	private String lastName;
+
+	@Column(name="middle_name")
+	private String middleName;
+
+	private int uid;
+
+	//bi-directional many-to-one association to HrJob
+	@OneToMany(mappedBy="hr")
+	private List<HrJob> hrJobs;
+
+	//bi-directional many-to-one association to UniversityJob
+	@OneToMany(mappedBy="hr")
+	private List<UniversityJob> universityJobs;
+
+	public Hr() {
+	}
+
+	public int getHrId() {
+		return this.hrId;
+	}
+
+	public void setHrId(int hrId) {
+		this.hrId = hrId;
+	}
+
+	public String getActvIn() {
+		return this.actvIn;
+	}
+
+	public void setActvIn(String actvIn) {
+		this.actvIn = actvIn;
+	}
+
+	public int getCompanyId() {
+		return this.companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public Date getCreatedTz() {
+		return this.createdTz;
+	}
+
+	public void setCreatedTz(Date createdTz) {
+		this.createdTz = createdTz;
+	}
+
+	public int getCreatedUid() {
+		return this.createdUid;
+	}
+
+	public void setCreatedUid(int createdUid) {
+		this.createdUid = createdUid;
+	}
+
+	public String getDisplayPicture() {
+		return this.displayPicture;
+	}
+
+	public void setDisplayPicture(String displayPicture) {
+		this.displayPicture = displayPicture;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getGender() {
+		return this.gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public byte[] getHrDescription() {
+		return this.hrDescription;
+	}
+
+	public void setHrDescription(byte[] hrDescription) {
+		this.hrDescription = hrDescription;
+	}
+
+	public String getHrRole() {
+		return this.hrRole;
+	}
+
+	public void setHrRole(String hrRole) {
+		this.hrRole = hrRole;
+	}
+
+	public Date getLastModifiedTz() {
+		return this.lastModifiedTz;
+	}
+
+	public void setLastModifiedTz(Date lastModifiedTz) {
+		this.lastModifiedTz = lastModifiedTz;
+	}
+
+	public int getLastModifiedUid() {
+		return this.lastModifiedUid;
+	}
+
+	public void setLastModifiedUid(int lastModifiedUid) {
+		this.lastModifiedUid = lastModifiedUid;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMiddleName() {
+		return this.middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public int getUid() {
+		return this.uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+	public List<HrJob> getHrJobs() {
+		return this.hrJobs;
+	}
+
+	public void setHrJobs(List<HrJob> hrJobs) {
+		this.hrJobs = hrJobs;
+	}
+
+	public HrJob addHrJob(HrJob hrJob) {
+		getHrJobs().add(hrJob);
+		hrJob.setHr(this);
+
+		return hrJob;
+	}
+
+	public HrJob removeHrJob(HrJob hrJob) {
+		getHrJobs().remove(hrJob);
+		hrJob.setHr(null);
+
+		return hrJob;
+	}
+
+	public List<UniversityJob> getUniversityJobs() {
+		return this.universityJobs;
+	}
+
+	public void setUniversityJobs(List<UniversityJob> universityJobs) {
+		this.universityJobs = universityJobs;
+	}
+
+	public UniversityJob addUniversityJob(UniversityJob universityJob) {
+		getUniversityJobs().add(universityJob);
+		universityJob.setHr(this);
+
+		return universityJob;
+	}
+
+	public UniversityJob removeUniversityJob(UniversityJob universityJob) {
+		getUniversityJobs().remove(universityJob);
+		universityJob.setHr(null);
+
+		return universityJob;
+	}
+
+}

@@ -1,0 +1,47 @@
+package edu.tier1.managedBean;
+
+public class HRBean {
+	private String hrName;
+	private String companyName;
+	private String roleTitle;
+	private String emailId;
+	private String phoneNo;
+	private String decription;
+	
+	public String getHrName() {
+		return hrName;
+	}
+	public void setHrName(String hrName) {
+		this.hrName = hrName;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public String getRoleTitle() {
+		return roleTitle;
+	}
+	public void setRoleTitle(String roleTitle) {
+		this.roleTitle = roleTitle;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	public String getDecription() {
+		return decription;
+	}
+	public void setDecription(String decription) {
+		this.decription = decription;
+	}
+}

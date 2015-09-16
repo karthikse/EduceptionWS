@@ -1,0 +1,370 @@
+package edu.tier3.dataEntities;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import java.util.Date;
+import java.util.List;
+
+
+/**
+ * The persistent class for the student database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
+@NamedQueries({
+	@NamedQuery(name="User.findByUserId", query="SELECT s FROM Student s where s.uid = :userId")
+})
+public class Student implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="student_id")
+	private int studentId;
+
+	@Column(name="actv_in")
+	private String actvIn;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="created_tz")
+	private Date createdTz;
+
+	@Column(name="created_uid")
+	private int createdUid;
+
+	@Column(name="display_picture")
+	private String displayPicture;
+
+	@Column(name="first_name")
+	private String firstName;
+
+	private String gender;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_modified_tz")
+	private Date lastModifiedTz;
+
+	@Column(name="last_modified_uid")
+	private int lastModifiedUid;
+
+	@Column(name="last_name")
+	private String lastName;
+
+	@Column(name="middle_name")
+	private String middleName;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="uid")
+	private User user;
+
+	//bi-directional many-to-one association to StudentAchievement
+	@OneToMany(mappedBy="student")
+	private List<StudentAchievement> studentAchievements;
+
+	//bi-directional many-to-one association to StudentCours
+	@OneToMany(mappedBy="student")
+	private List<StudentCours> studentCourses;
+
+	//bi-directional many-to-one association to StudentEducationDetail
+	@OneToMany(mappedBy="student")
+	private List<StudentEducationDetail> studentEducationDetails;
+
+	//bi-directional many-to-one association to StudentEmployementHistory
+	@OneToMany(mappedBy="student")
+	private List<StudentEmployementHistory> studentEmployementHistories;
+
+	//bi-directional many-to-one association to StudentJob
+	@OneToMany(mappedBy="student")
+	private List<StudentJob> studentJobs;
+
+	//bi-directional many-to-one association to StudentLeadership
+	@OneToMany(mappedBy="student")
+	private List<StudentLeadership> studentLeaderships;
+
+	//bi-directional many-to-one association to StudentSkill
+	@OneToMany(mappedBy="student")
+	private List<StudentSkill> studentSkills;
+
+	//bi-directional many-to-one association to StudentWorkAuthorization
+	@OneToMany(mappedBy="student")
+	private List<StudentWorkAuthorization> studentWorkAuthorizations;
+
+	public Student() {
+	}
+
+	public int getStudentId() {
+		return this.studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
+	public String getActvIn() {
+		return this.actvIn;
+	}
+
+	public void setActvIn(String actvIn) {
+		this.actvIn = actvIn;
+	}
+
+	public Date getCreatedTz() {
+		return this.createdTz;
+	}
+
+	public void setCreatedTz(Date createdTz) {
+		this.createdTz = createdTz;
+	}
+
+	public int getCreatedUid() {
+		return this.createdUid;
+	}
+
+	public void setCreatedUid(int createdUid) {
+		this.createdUid = createdUid;
+	}
+
+	public String getDisplayPicture() {
+		return this.displayPicture;
+	}
+
+	public void setDisplayPicture(String displayPicture) {
+		this.displayPicture = displayPicture;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getGender() {
+		return this.gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Date getLastModifiedTz() {
+		return this.lastModifiedTz;
+	}
+
+	public void setLastModifiedTz(Date lastModifiedTz) {
+		this.lastModifiedTz = lastModifiedTz;
+	}
+
+	public int getLastModifiedUid() {
+		return this.lastModifiedUid;
+	}
+
+	public void setLastModifiedUid(int lastModifiedUid) {
+		this.lastModifiedUid = lastModifiedUid;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMiddleName() {
+		return this.middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<StudentAchievement> getStudentAchievements() {
+		return this.studentAchievements;
+	}
+
+	public void setStudentAchievements(List<StudentAchievement> studentAchievements) {
+		this.studentAchievements = studentAchievements;
+	}
+
+	public StudentAchievement addStudentAchievement(StudentAchievement studentAchievement) {
+		getStudentAchievements().add(studentAchievement);
+		studentAchievement.setStudent(this);
+
+		return studentAchievement;
+	}
+
+	public StudentAchievement removeStudentAchievement(StudentAchievement studentAchievement) {
+		getStudentAchievements().remove(studentAchievement);
+		studentAchievement.setStudent(null);
+
+		return studentAchievement;
+	}
+
+	public List<StudentCours> getStudentCourses() {
+		return this.studentCourses;
+	}
+
+	public void setStudentCourses(List<StudentCours> studentCourses) {
+		this.studentCourses = studentCourses;
+	}
+
+	public StudentCours addStudentCours(StudentCours studentCours) {
+		getStudentCourses().add(studentCours);
+		studentCours.setStudent(this);
+
+		return studentCours;
+	}
+
+	public StudentCours removeStudentCours(StudentCours studentCours) {
+		getStudentCourses().remove(studentCours);
+		studentCours.setStudent(null);
+
+		return studentCours;
+	}
+
+	public List<StudentEducationDetail> getStudentEducationDetails() {
+		return this.studentEducationDetails;
+	}
+
+	public void setStudentEducationDetails(List<StudentEducationDetail> studentEducationDetails) {
+		this.studentEducationDetails = studentEducationDetails;
+	}
+
+	public StudentEducationDetail addStudentEducationDetail(StudentEducationDetail studentEducationDetail) {
+		getStudentEducationDetails().add(studentEducationDetail);
+		studentEducationDetail.setStudent(this);
+
+		return studentEducationDetail;
+	}
+
+	public StudentEducationDetail removeStudentEducationDetail(StudentEducationDetail studentEducationDetail) {
+		getStudentEducationDetails().remove(studentEducationDetail);
+		studentEducationDetail.setStudent(null);
+
+		return studentEducationDetail;
+	}
+
+	public List<StudentEmployementHistory> getStudentEmployementHistories() {
+		return this.studentEmployementHistories;
+	}
+
+	public void setStudentEmployementHistories(List<StudentEmployementHistory> studentEmployementHistories) {
+		this.studentEmployementHistories = studentEmployementHistories;
+	}
+
+	public StudentEmployementHistory addStudentEmployementHistory(StudentEmployementHistory studentEmployementHistory) {
+		getStudentEmployementHistories().add(studentEmployementHistory);
+		studentEmployementHistory.setStudent(this);
+
+		return studentEmployementHistory;
+	}
+
+	public StudentEmployementHistory removeStudentEmployementHistory(StudentEmployementHistory studentEmployementHistory) {
+		getStudentEmployementHistories().remove(studentEmployementHistory);
+		studentEmployementHistory.setStudent(null);
+
+		return studentEmployementHistory;
+	}
+
+	public List<StudentJob> getStudentJobs() {
+		return this.studentJobs;
+	}
+
+	public void setStudentJobs(List<StudentJob> studentJobs) {
+		this.studentJobs = studentJobs;
+	}
+
+	public StudentJob addStudentJob(StudentJob studentJob) {
+		getStudentJobs().add(studentJob);
+		studentJob.setStudent(this);
+
+		return studentJob;
+	}
+
+	public StudentJob removeStudentJob(StudentJob studentJob) {
+		getStudentJobs().remove(studentJob);
+		studentJob.setStudent(null);
+
+		return studentJob;
+	}
+
+	public List<StudentLeadership> getStudentLeaderships() {
+		return this.studentLeaderships;
+	}
+
+	public void setStudentLeaderships(List<StudentLeadership> studentLeaderships) {
+		this.studentLeaderships = studentLeaderships;
+	}
+
+	public StudentLeadership addStudentLeadership(StudentLeadership studentLeadership) {
+		getStudentLeaderships().add(studentLeadership);
+		studentLeadership.setStudent(this);
+
+		return studentLeadership;
+	}
+
+	public StudentLeadership removeStudentLeadership(StudentLeadership studentLeadership) {
+		getStudentLeaderships().remove(studentLeadership);
+		studentLeadership.setStudent(null);
+
+		return studentLeadership;
+	}
+
+	public List<StudentSkill> getStudentSkills() {
+		return this.studentSkills;
+	}
+
+	public void setStudentSkills(List<StudentSkill> studentSkills) {
+		this.studentSkills = studentSkills;
+	}
+
+	public StudentSkill addStudentSkill(StudentSkill studentSkill) {
+		getStudentSkills().add(studentSkill);
+		studentSkill.setStudent(this);
+
+		return studentSkill;
+	}
+
+	public StudentSkill removeStudentSkill(StudentSkill studentSkill) {
+		getStudentSkills().remove(studentSkill);
+		studentSkill.setStudent(null);
+
+		return studentSkill;
+	}
+
+	public List<StudentWorkAuthorization> getStudentWorkAuthorizations() {
+		return this.studentWorkAuthorizations;
+	}
+
+	public void setStudentWorkAuthorizations(List<StudentWorkAuthorization> studentWorkAuthorizations) {
+		this.studentWorkAuthorizations = studentWorkAuthorizations;
+	}
+
+	public StudentWorkAuthorization addStudentWorkAuthorization(StudentWorkAuthorization studentWorkAuthorization) {
+		getStudentWorkAuthorizations().add(studentWorkAuthorization);
+		studentWorkAuthorization.setStudent(this);
+
+		return studentWorkAuthorization;
+	}
+
+	public StudentWorkAuthorization removeStudentWorkAuthorization(StudentWorkAuthorization studentWorkAuthorization) {
+		getStudentWorkAuthorizations().remove(studentWorkAuthorization);
+		studentWorkAuthorization.setStudent(null);
+
+		return studentWorkAuthorization;
+	}
+
+}

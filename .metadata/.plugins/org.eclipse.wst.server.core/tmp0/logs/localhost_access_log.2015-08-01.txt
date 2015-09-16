@@ -1,0 +1,2 @@
+127.0.0.1 - - [01/Aug/2015:22:55:44 -0500] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Aug/2015:22:55:45 -0500] "GET /Eduception/WEB-INF/classes/edu/tier3/dataAccessLayer/ProfileDAL.java HTTP/1.1" 404 992

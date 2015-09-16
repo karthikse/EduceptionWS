@@ -1,0 +1,61 @@
+package edu.tier1.controller;
+
+import java.util.HashMap;
+
+import edu.tier1.managedBean.UserBean;
+import edu.tier1.managedBean.StudentProfileDetails;
+import edu.tier2.securityLayer.LoginSL;
+import edu.tier2.securityLayer.ProfileSL;
+
+public class Controller {
+	private UserBean userBean;
+	private StudentProfileDetails studentProfileDetails;
+
+	public StudentProfileDetails getStudentProfileDetails() {
+		return studentProfileDetails;
+	}
+
+	public void setStudentProfileDetails(StudentProfileDetails studentProfileDetails) {
+		this.studentProfileDetails = studentProfileDetails;
+	}
+	
+	public String login(){
+		
+		LoginSL loginSL = new LoginSL();
+		HashMap credMap = new HashMap();
+		credMap.put("userBean", userBean);
+		HashMap retMap = loginSL.login(credMap);
+		UserBean ub = (UserBean)retMap.get("retUserBean");
+		return ub.getLoginStatus();	
+	}
+	
+	public String loadSPD(){
+		
+		ProfileSL profileSL = new ProfileSL();
+		HashMap credMap = new HashMap();
+		credMap.put("userBean", userBean);
+		HashMap retMap = profileSL.loadStudentProfileDetails(credMap);
+		UserBean ub = (UserBean)retMap.get("retUserBean");
+		return ub.getLoginStatus();	
+	}
+	public static void main(String []args){
+		HashMap credMap = new HashMap();
+		UserBean a = new UserBean();
+		a.setName("aa");		
+		credMap.put("a", a);
+		test(credMap);
+		System.out.println(a.getName())
+	}
+	public static void test(HashMap credMap){
+		
+		UserBean u = (UserBean)credMap.get("aa");
+		u.setName("bb");
+	}
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
+}
